@@ -80,7 +80,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   # REMOTE AWS BOX
-  config.vm.define :test do |remote|
+  config.vm.define :remote do |remote|
     remote.vm.provider :aws do |aws, override|
       aws.access_key_id = ENV['AWS_ACCESS_KEY_ID']
       aws.secret_access_key =  ENV['AWS_SECRET_ACCESS_KEY']
