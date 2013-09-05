@@ -48,7 +48,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.omnibus.chef_version = :latest
 
   # DEFAULT BOX
-  config.vm.define :default do |default|
+  config.vm.define :default, primary: true do |default|
     default.vm.provision :chef_solo do |chef|
       chef.node_name = DJANGO_PROJECT_NAME
       chef.json = CHEF_JSON
