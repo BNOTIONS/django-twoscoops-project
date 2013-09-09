@@ -34,3 +34,9 @@ logs/
 Gemfile.lock
 bin/*
 .bundle/*
+
+# Chef deployed settings:
+app_environment.sh
+settings/database.py
+settings/celery_settings.py
+settings/raven_settings.py
