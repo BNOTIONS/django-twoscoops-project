@@ -8,7 +8,7 @@ JENKINS_USER = "tomcat6"
 AWS_APP_ENV = ENV['AWS_APP_ENV'] || "testing"
 DJANGO_PROJECT_NAME = "{{ project_name }}"
 CHEF_JSON = {
-  "build-essential" => {
+  "build_essential" => {
     "compiletime" => true
   },
   "postgresql" => {
@@ -76,35 +76,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         "supervisor",
         "twoscoops::test"
       ]
-    end
-  end
-
-  # REMOTE AWS BOX
-  config.vm.define :remote do |remote|
-    remote.vm.provider :aws do |aws, override|
-      aws.access_key_id = ENV['AWS_ACCESS_KEY_ID']
-      aws.secret_access_key =  ENV['AWS_SECRET_ACCESS_KEY']
-      aws.keypair_name = "aws-default"
-
-      aws.ami = "ami-d0f89fb9"
-      aws.instance_type = "t1.micro"
-      aws.security_groups = ['twoscoops-project']
-
-      override.ssh.username = "ubuntu"
-      override.ssh.private_key_path = "~/.ssh/aws.pem"
-
-      override.vm.provision :chef_solo do |chef|
-        chef.node_name = DJANGO_PROJECT_NAME
-        chef.json = CHEF_JSON
-
-        chef.run_list = [
-          "build-essential",
-          "postgresql::server",
-          "python",
-          "supervisor",
-          "twoscoops::deploy"
-        ]
-      end
     end
   end
 
