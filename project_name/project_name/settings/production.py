@@ -58,6 +58,13 @@ except ImportError:
     pass
 ########## END DATABASE CONFIGURATION
 
+########## RAVEN CONFIGURATION
+try:
+    from raven_settings import *
+    INSTALLED_APPS += ( 'raven.contrib.django.raven_compat' )
+except ImportError:
+    pass
+########## END RAVEN CONFIGURATION
 
 ########## CACHE CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#caches
