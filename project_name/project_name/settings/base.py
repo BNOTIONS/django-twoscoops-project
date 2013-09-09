@@ -205,6 +205,13 @@ LOCAL_APPS = (
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 ########## END APP CONFIGURATION
 
+########## CELERY CONFIGURATION
+try:
+    from celery_settings import *
+except ImportError:
+    pass
+########## END CELERY CONFIGUATION
+
 
 ########## LOGGING CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#logging
