@@ -210,6 +210,18 @@ try:
     from celery_settings import *
 except ImportError:
     pass
+
+CELERY_IMPORTS = (
+    #"my_app.tasks",
+)
+
+CELERYBEAT_SCHEDULE = {
+    # Executes daily at midnight
+    #'nightly-tasks': {
+    #    'task': 'my_app.tasks.nightly',
+    #    'schedule': crontab(minute=0, hour=0)
+    #}
+}
 ########## END CELERY CONFIGUATION
 
 
