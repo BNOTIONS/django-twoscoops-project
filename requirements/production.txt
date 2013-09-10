@@ -5,3 +5,4 @@
 #gunicorn==0.17.4
 uwsgi==1.9.14
 raven==3.4.1
+python-memcached==1.53
