@@ -61,6 +61,8 @@ except ImportError:
 ########## RAVEN CONFIGURATION
 try:
     from raven_settings import *
+    INSTALLED_APPS += RAVEN_APPS
+    LOGGING = dict(LOGGING.items() + RAVEN_LOGGING.items())
 except ImportError:
     pass
 ########## END RAVEN CONFIGURATION
