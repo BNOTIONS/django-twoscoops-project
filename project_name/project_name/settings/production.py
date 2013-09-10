@@ -61,7 +61,6 @@ except ImportError:
 ########## RAVEN CONFIGURATION
 try:
     from raven_settings import *
-    INSTALLED_APPS += ( 'raven.contrib.django.raven_compat' )
 except ImportError:
     pass
 ########## END RAVEN CONFIGURATION
