@@ -208,20 +208,19 @@ INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 ########## CELERY CONFIGURATION
 try:
     from celery_settings import *
+    from celery.schedules import crontab
+    CELERY_IMPORTS = (
+        #"my_app.tasks",
+    )
+    CELERYBEAT_SCHEDULE = {
+        # Executes daily at midnight
+        #'nightly-tasks': {
+        #    'task': 'my_app.tasks.nightly',
+        #    'schedule': crontab(minute=0, hour=0)
+        #}
+    }
 except ImportError:
     pass
-
-CELERY_IMPORTS = (
-    #"my_app.tasks",
-)
-
-CELERYBEAT_SCHEDULE = {
-    # Executes daily at midnight
-    #'nightly-tasks': {
-    #    'task': 'my_app.tasks.nightly',
-    #    'schedule': crontab(minute=0, hour=0)
-    #}
-}
 ########## END CELERY CONFIGUATION
 
 
