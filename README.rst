@@ -11,7 +11,7 @@ To use this project follow these steps:
 #. Create a new virtualenv
 #. Install Django
 #. Create a new project using this project template
-#. Run `vagrant up` to create your new local development environment
+#. Run `vagrant up default` to create your new local development environment
 #. Run `vagrant ssh` to login
 #. Change directories to /vagrant and start creating your application
 #. You can login to the Django admin with the username and password 'vagrant'
@@ -91,7 +91,7 @@ Creating your local development environment
 To create a new virtual machine running your project, run the following command::
 
     $ cd icecream
-    $ vagrant up
+    $ vagrant up default
 
 Creating a new virtual machine for the first time can take several minutes.
 Once completed you can login by running the following command::
