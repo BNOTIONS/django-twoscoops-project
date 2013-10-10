@@ -205,6 +205,24 @@ LOCAL_APPS = (
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 ########## END APP CONFIGURATION
 
+########## CELERY CONFIGURATION
+try:
+    from celery_settings import *
+    from celery.schedules import crontab
+    CELERY_IMPORTS = (
+        #"my_app.tasks",
+    )
+    CELERYBEAT_SCHEDULE = {
+        # Executes daily at midnight
+        #'nightly-tasks': {
+        #    'task': 'my_app.tasks.nightly',
+        #    'schedule': crontab(minute=0, hour=0)
+        #}
+    }
+except ImportError:
+    pass
+########## END CELERY CONFIGUATION
+
 
 ########## LOGGING CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#logging
@@ -220,6 +238,11 @@ LOGGING = {
         'require_debug_false': {
             '()': 'django.utils.log.RequireDebugFalse'
         }
+    },
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
+        },
     },
     'handlers': {
         'mail_admins': {

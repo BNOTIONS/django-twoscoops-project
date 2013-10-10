@@ -50,13 +50,29 @@ SERVER_EMAIL = EMAIL_HOST_USER
 ########## END EMAIL CONFIGURATION
 
 ########## DATABASE CONFIGURATION
-DATABASES = {}
+#DATABASES = {}
+# Load external database module if it exists
+try:
+    from database import *
+except ImportError:
+    pass
 ########## END DATABASE CONFIGURATION
 
+########## RAVEN CONFIGURATION
+try:
+    from raven_settings import *
+    INSTALLED_APPS += RAVEN_APPS
+    LOGGING = dict(LOGGING.items() + RAVEN_LOGGING.items())
+except ImportError:
+    pass
+########## END RAVEN CONFIGURATION
 
 ########## CACHE CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#caches
-CACHES = {}
+try:
+    from cache_settings import *
+except ImportError:
+    pass
 ########## END CACHE CONFIGURATION
 
 

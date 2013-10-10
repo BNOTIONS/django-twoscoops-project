@@ -16,3 +16,28 @@ build
 
 # Logs:
 *.log
+logs/
+
+# Vagrant:
+.vagrant
+
+# Berkshelf
+.Berksfile.lock
+*~
+*#
+.#*
+\#*#
+.*.sw[a-z]
+*.un~
+
+# Bundler
+Gemfile.lock
+bin/*
+.bundle/*
+
+# Chef deployed settings:
+app_environment.sh
+settings/database.py
+settings/celery_settings.py
+settings/raven_settings.py
+settings/cache_settings.py

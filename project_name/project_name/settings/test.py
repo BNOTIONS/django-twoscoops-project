@@ -4,7 +4,7 @@ from base import *
 TEST_RUNNER = 'discover_runner.DiscoverRunner'
 TEST_DISCOVER_TOP_LEVEL = SITE_ROOT
 TEST_DISCOVER_ROOT = SITE_ROOT
-TEST_DISCOVER_PATTERN = "test_*.py"
+TEST_DISCOVER_PATTERN = "test*.py"
 ########## IN-MEMORY TEST DATABASE
 DATABASES = {
     "default": {
@@ -16,3 +16,15 @@ DATABASES = {
         "PORT": "",
     },
 }
+
+INSTALLED_APPS += (
+    'django_jenkins',
+)
+
+PROJECT_APPS = LOCAL_APPS
+
+JENKINS_TASKS = (
+    'django_jenkins.tasks.with_coverage',
+    'django_jenkins.tasks.django_tests',
+    'django_jenkins.tasks.dir_tests',
+)
