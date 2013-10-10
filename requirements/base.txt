@@ -8,3 +8,5 @@ psycopg2==2.5.1
 django-celery==3.0.21
 pytz==2013b
 celery==3.0.22
+django-statsd-mozilla==0.3.9
+statsd==2.0.3
