@@ -83,7 +83,7 @@ Creating your project
 To create a new Django project called '**icecream**' using this project template,
 run the following command::
 
-    $ django-admin.py startproject --template=https://github.com/BNOTIONS/django-twoscoops-project/archive/develop.zip --name=Vagrantfile --extension=py,rst,html icecream
+    $ django-admin.py startproject --template=https://github.com/BNOTIONS/django-twoscoops-project/archive/master.zip --name=Vagrantfile --extension=py,rst,html icecream
 
 Creating your local development environment
 ===========================================
