@@ -24,6 +24,7 @@ INSTALLED_APPS += (
 PROJECT_APPS = LOCAL_APPS
 
 JENKINS_TASKS = (
+    'django_jenkins.tasks.run.pyflakes',
     'django_jenkins.tasks.with_coverage',
     'django_jenkins.tasks.django_tests',
     'django_jenkins.tasks.dir_tests',
