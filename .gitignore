@@ -36,8 +36,5 @@ bin/*
 .bundle/*
 
 # Chef deployed settings:
-app_environment.sh
-settings/database.py
-settings/celery_settings.py
-settings/raven_settings.py
-settings/cache_settings.py
+**/settings/database.py
+**/settings/*_settings.py
