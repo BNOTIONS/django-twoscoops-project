@@ -63,20 +63,4 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
   end
 
-  # TEST BOX
-  config.vm.define :test do |test|
-    test.vm.provision :chef_solo do |chef|
-      chef.node_name = DJANGO_PROJECT_NAME
-      chef.json = CHEF_JSON
-
-      chef.run_list = [
-        "build-essential",
-        "postgresql::server",
-        "python",
-        "supervisor",
-        "twoscoops::test"
-      ]
-    end
-  end
-
 end
