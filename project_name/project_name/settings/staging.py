@@ -1,6 +1,6 @@
 """Staging settings and globals."""
 
-
+import sys
 from os import environ
 
 from base import *
@@ -19,6 +19,10 @@ def get_env_setting(setting):
         raise ImproperlyConfigured(error_msg)
 
 DEBUG = True
+
+# ensure that celeryd is not run with DEBUG = True as it casues memory leaks
+if "celeryd" in sys.argv:
+    DEBUG = False
 
 ########## EMAIL CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#email-backend
