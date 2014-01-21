@@ -16,6 +16,11 @@ DATABASES = {
         "PORT": "",
     },
 }
+# Load external database module if it exists
+try:
+    from database import *
+except ImportError:
+    pass
 
 INSTALLED_APPS += (
     'django_jenkins',
