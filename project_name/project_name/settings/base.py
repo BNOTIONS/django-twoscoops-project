@@ -205,6 +205,7 @@ LOCAL_APPS = (
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 ########## END APP CONFIGURATION
 
+
 ########## CELERY CONFIGURATION
 try:
     from celery_settings import *
@@ -222,6 +223,24 @@ try:
 except ImportError:
     pass
 ########## END CELERY CONFIGUATION
+
+
+########## S3 STORAGE CONFIGURATION
+try:
+    from s3_settings import *
+    DEFAULT_FILE_STORAGE = 'storage.backends.s3boto.S3BotoStorage'
+    S3_URL = 'https://' + AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com/'
+except ImportError:
+    pass
+########## END S3 STORAGE CONFIGURATION
+
+
+########## FACEBOOK APP CONFIGURATION
+try:
+    from facebook_settings import *
+except ImportError:
+    pass
+########## END FACEBOOK APP CONFIGURATION
 
 
 ########## LOGGING CONFIGURATION
