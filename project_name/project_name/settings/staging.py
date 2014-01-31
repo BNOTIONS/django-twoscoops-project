@@ -20,6 +20,10 @@ def get_env_setting(setting):
 
 DEBUG = True
 
+# ensure that celeryd is not run with DEBUG = True as it casues memory leak
+if "celeryd" in sys.argv:
+    DEBUG = False
+
 ########## EMAIL CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#email-backend
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
