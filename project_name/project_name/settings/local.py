@@ -53,7 +53,6 @@ CACHES = {
 ########## TOOLBAR CONFIGURATION
 # See: https://github.com/django-debug-toolbar/django-debug-toolbar#installation
 INSTALLED_APPS += (
-    'django_statsd',
     'debug_toolbar',
 )
 
@@ -63,8 +62,6 @@ INTERNAL_IPS = ('127.0.0.1',)
 # See: https://github.com/django-debug-toolbar/django-debug-toolbar#installation
 MIDDLEWARE_CLASSES += (
     'debug_toolbar.middleware.DebugToolbarMiddleware',
-    'django_statsd.middleware.GraphiteRequestTimingMiddleware',
-    'django_statsd.middleware.GraphiteMiddleware',
 )
 
 # See: https://github.com/django-debug-toolbar/django-debug-toolbar#installation
@@ -80,6 +77,15 @@ DEBUG_TOOLBAR_PANELS = (
 
 ########## STATSD CONFIGURATION
 # See: https://django-statsd.readthedocs.org/en/latest/#installation
+INSTALLED_APPS += (
+    'django_statsd'
+)
+
+MIDDLEWARE_CLASSES += (
+    'django_statsd.middleware.GraphiteRequestTimingMiddleware',
+    'django_statsd.middleware.GraphiteMiddleware',
+)
+
 STATSD_CLIENT = 'django_statsd.clients.toolbar'
 
 STATSD_PATCHES = [
