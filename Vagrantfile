@@ -3,9 +3,7 @@
 
 VAGRANTFILE_API_VERSION = "2"
 
-HOME = ENV['HOME']
-JENKINS_USER = "tomcat6"
-AWS_APP_ENV = ENV['AWS_APP_ENV'] || "testing"
+JENKINS_CI = ENV['JENKINS_CI'] ? true : false
 DJANGO_PROJECT_NAME = "{{ project_name }}"
 CHEF_JSON = {
   "build_essential" => {
@@ -36,7 +34,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "ubuntu-12.04-omnibus-chef"
   config.vm.box_url = "http://grahamc.com/vagrant/ubuntu-12.04-omnibus-chef.box"
 
-  if ENV['USER'] == JENKINS_USER
+  if JENKINS_CI
     config.vm.network :forwarded_port, guest: 8080, host: rand(30000) + 1024
   else
     config.vm.network :forwarded_port, guest: 8080, host: 8080
@@ -58,8 +56,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         "postgresql::server",
         "python",
         "supervisor",
-        "twoscoops"
       ]
+
+      chef.add_recipe JENKINS_CI ? "twoscoops::test" : "twoscoops::local"
     end
   end
 
