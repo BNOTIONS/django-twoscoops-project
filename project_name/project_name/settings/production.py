@@ -75,6 +75,29 @@ except ImportError:
     pass
 ########## END CACHE CONFIGURATION
 
+########## STATSD CONFIGURATION
+# See: https://django-statsd.readthedocs.org/en/latest/#installation
+try:
+    from statsd_settings import *
+
+    STATSD_CLIENT = 'django_statsd.clients.normal'
+
+    INSTALLED_APPS += (
+        'django_statsd'
+    )
+
+    MIDDLEWARE_CLASSES += (
+        'django_statsd.middleware.GraphiteRequestTimingMiddleware',
+        'django_statsd.middleware.GraphiteMiddleware',
+    )
+
+    STATSD_PATCHES = [
+        'django_statsd.patches.db',
+        'django_statsd.patches.cache',
+    ]
+except ImportError:
+    pass
+########## END STATSD CONFIGURATION
 
 ########## SECRET CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#secret-key
