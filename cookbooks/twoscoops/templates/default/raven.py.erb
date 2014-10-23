@@ -1,0 +1,40 @@
+RAVEN_CONFIG = {
+    'dsn': '<%= node[:twoscoops][:raven][:dsn] %>',
+}
+
+RAVEN_APPS = ( 'raven.contrib.django.raven_compat', )
+
+RAVEN_LOGGING = {
+    'root': {
+        'level': 'WARNING',
+        'handlers': ['sentry']
+    },
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
+        },
+    },
+    'handlers': {
+        'sentry': {
+            'level': 'DEBUG',
+            'class': 'raven.contrib.django.handlers.SentryHandler'
+        },
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose'
+        },
+    },
+    'loggers': {
+        'raven': {
+            'level': 'ERROR',
+            'handlers': ['console'],
+            'propagate': False
+        },
+        'sentry.errors': {
+            'level': 'ERROR',
+            'handlers': ['console'],
+            'propagate': False
+        }
+    }
+}
